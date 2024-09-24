@@ -92,15 +92,36 @@ async function onCall({ message, args, getLang, userPermissions, prefix }) {
             commands[value.category].push(value._name && value._name[language] ? value._name[language] : key);
         }
 
+        // Fonction pour ajouter correctement le symbole │ à chaque commande par paire
+        const formatCommands = (commandList) => {
+            let formatted = [];
+            for (let i = 0; i < commandList.length; i += 2) {
+                // Grouper deux commandes par ligne
+                let line = `⦿ ${commandList[i]}` + (commandList[i + 1] ? ` ⦿ ${commandList[i + 1]}` : '');
+                formatted.push(line);
+            }
+            return formatted.join("\n│ "); // Rejoindre avec le séparateur et retour à la ligne
+        };
+
         let list = Object.keys(commands)
-            .map(category => `⌈ ${category.toUpperCase()} ⌋\n${commands[category].join(", ")}`)
+            .map(category => {
+                let categoryTitle = `╭ ❍『 ${category.toUpperCase()} 』`;
+                let commandList = `│ ${formatCommands(commands[category])}`; // Appeler la fonction pour formater les commandes
+                return `${categoryTitle}\n${commandList}\n╰───────────⎔`;
+            })
             .join("\n\n");
 
-        message.reply(getLang("help.list", {
-            total: Object.values(commands).map(e => e.length).reduce((a, b) => a + b, 0),
-            list,
-            syntax: message.args[0].toLowerCase()
-        }));
+        let finalMessage = `
+╚» 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗘𝗦 «╝
+             ━━━⌾━━━
+${list}
+             ━━━⌾━━━
+✘ 𝙉𝙤𝙢𝙗𝙧𝙚𝙨 𝙙𝙚 𝘾𝙢𝙙𝙨:「${Object.values(commands).map(e => e.length).reduce((a, b) => a + b, 0)}」
+☁️ 𝘛𝘢𝘱𝘦 ${prefix}Help [𝙽𝚘𝚖 𝚍𝚎 𝚕𝚊 𝚌𝚖𝚍] 𝘱𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘤𝘰𝘮𝘮𝘦𝘯𝘵 𝘶𝘵𝘪𝘭𝘪𝘴𝘦𝘳 𝘶𝘯𝘦 𝘤𝘰𝘮𝘮𝘢𝘯𝘥𝘦.
+✘ 𝗣𝗿𝗲𝗳𝗶𝘅  ⇛ ${prefix} ⇚
+        `.trim();
+
+        message.reply(finalMessage);
     } else {
         const command = commandsConfig.get(getCommandName(commandName, commandsConfig));
         if (!command) return message.reply(getLang("help.commandNotExists", { command: commandName }));
@@ -124,7 +145,6 @@ async function onCall({ message, args, getLang, userPermissions, prefix }) {
         }).replace(/^ +/gm, ''));
     }
 }
-
 export default {
     config,
     langData,
