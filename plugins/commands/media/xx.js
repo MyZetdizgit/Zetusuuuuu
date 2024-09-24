@@ -85,41 +85,58 @@ async function onCall({ message, args, getLang }) {
                 prompt += args[i] + ' ';
             }
         }
-        const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n➨ 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝘴𝘵𝘦𝘱𝘴(𝟭-𝟯𝟱) -𝙡 𝘭𝘰𝘳𝘢1,𝘭𝘰𝘳𝘢2 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦 -𝙨 𝘴𝘦𝘦𝘥 \n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7 -s -1\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘳𝘢𝘵𝘪𝘰 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙧𝙖𝙩𝙞𝙤\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘮𝘰𝘥𝘦𝘭𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙢𝙤𝙙𝙚𝙡\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘭𝘰𝘳𝘢𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙡𝙤𝙧𝙖";
-         if (prompt.toLowerCase() === "model") {
-            const modelGuide = "◉ 𝐌𝐎𝐃𝐄𝐋𝐄𝐒 𝐗𝐗 ◉ \n\n✧ 𝐒𝐃𝐗𝐋 ✧ \n𝟏: 𝐴𝑛𝑖𝑚𝑎𝑔𝑖𝑛𝑒 𝑋𝐿 - 3.1\n𝟐: 𝐴𝑛𝑖𝑚𝑎𝑔𝑖𝑛𝑒 𝑋𝐿 - 𝑉3\n𝟑: 4𝑡ℎ 𝑇𝑎𝑖𝑙 𝐴𝑛𝑖𝑚𝑒 𝐻𝑒𝑛𝑡𝑎𝑖\n𝟒: 𝐶𝐴𝑇 - 𝐶𝑖𝑡𝑟𝑜𝑛 𝐴𝑛𝑖𝑚𝑒 𝑋𝐿\n𝟓: 𝐴𝐴𝑀 𝑋𝐿 𝐴𝑛𝑖𝑚𝑒 𝑀𝑖𝑥 - 𝑣1.0\n𝟔: 𝐷𝑖𝑠𝑛𝑒𝑦 𝑃𝑖𝑥𝑎𝑟 𝑆𝑡𝑦𝑙𝑒 𝑆𝐷𝑋𝐿\n𝟕: 𝐶𝑜𝑚𝑖𝑐𝑠 𝐶ℎ𝑎𝑟𝑎𝑐𝑡𝑒𝑟𝑠 3𝐷\n\n✧ 𝐅𝐋𝐔𝐗 ✧\n𝟖: 𝐹𝐿𝑈𝑋 .1 - 𝑑𝑒𝑣 - 𝑓𝑝8\n𝟗: 𝐹𝑙𝑢𝑥 𝑈𝑛𝑐ℎ𝑎𝑖𝑛𝑒𝑑 𝐴𝑟𝑡𝑓𝑢𝑙 𝑁𝑆𝐹𝑊\n𝟏𝟎: 𝐹𝐿𝑈𝑋 - 𝐷𝑟𝑒𝑎𝑚 𝐷𝑖𝑓𝑓𝑢𝑠𝑖𝑜𝑛 \n\n✧ 𝐒𝐃-𝟏.𝟓 ✧\n𝟏𝟏: 𝑆𝑢𝑑𝑎𝑐ℎ𝑖 - 𝑉1\n𝟏𝟐: 𝑂𝑥𝑎𝑙𝑖𝑠 𝐴𝑛𝑖𝑚𝑒 \n𝟏𝟑: 𝑃𝑒𝑟𝑓𝑒𝑐𝑡 𝑊𝑜𝑟𝑙𝑑 𝑉6\n𝟏𝟒: 𝐶ℎ𝑖𝑙𝑙𝑜𝑢𝑡 𝑀𝑖𝑥 - 𝑁𝑖\n𝟏𝟓: 𝐴𝑠𝑡𝑟 𝐴𝑛𝑖𝑚𝑒 - 6.0\n𝟏𝟔: 𝑀𝑒𝑖𝑛𝑎 𝐻𝑒𝑛𝑡𝑎𝑖 - v3\n𝟏𝟕: 3𝐷 𝐶𝑎𝑟𝑡𝑜𝑜𝑛 𝑉𝑖𝑠𝑖𝑜𝑛 - 𝑉1\n\n ****\n𝟏𝟖: 7𝑡ℎ 𝐴𝑛𝑖𝑚𝑒 𝑋𝐿 - 𝐵\n𝟏𝟗: 𝑂𝑝𝑒𝑛𝐷𝑎𝑙𝑙𝑒 - 3\n𝟐𝟎: 𝐾𝑜ℎ𝑎𝑘𝑢 𝑋𝐿 - 𝑃𝑠𝑖𝑙𝑜𝑛\n𝟐𝟏: 7𝑡ℎ 𝐴𝑛𝑖𝑚𝑒 𝑋𝐿 - 𝐴\n𝟐𝟐: 𝐶ℎ𝑖𝑚𝑒𝑟𝑎 - 2\n𝟑𝟎: 𝐴𝑛𝑖𝑚𝑎𝑔𝑖𝑛𝑒𝑋𝑙31 - 𝑅𝑒𝑚𝑖𝑥";
-            return message.reply(modelGuide); }  
-        // Inform the user about image generation
-        message.reply(getLang('generationInProgress'));
 
-        // Generate image
+        // Gestion des commandes spéciales
+        const guideMessage = "𝐆𝐔𝐈𝐃𝐄 𝐗𝐗 :\n\n➨ 𝙓𝙭 𝘱𝘳𝘰𝘮𝘱𝘵 -𝙧 𝘳𝘢𝘵𝘪𝘰 -𝙢 𝘮𝘰𝘥𝘦𝘭 -𝙨𝙩 𝘴𝘵𝘦𝘱𝘴(𝟭-𝟯𝟱) -𝙡 𝘭𝘰𝘳𝘢1,𝘭𝘰𝘳𝘢2 -𝙘 𝘤𝘧𝘨_𝘴𝘤𝘢𝘭𝘦 -𝙨 𝘴𝘦𝘦𝘥 \n\n ◉ 𝐄𝐱𝐞𝐦𝐩𝐥𝐞 : Xx un chat surfant sur un tsunami -r 4:7 -m 2 -st 30 -l 4,1 -c 7 -s -1\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘳𝘢𝘵𝘪𝘰𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙧𝙖𝙩𝙞𝙤\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘮𝘰𝘥𝘦𝘭𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙢𝙤𝙙𝙚𝙡\n\n◉ 𝘗𝘰𝘶𝘳 𝘷𝘰𝘪𝘳 𝘭𝘦𝘴 𝘭𝘰𝘳𝘢𝘴 𝘥𝘪𝘴𝘱𝘰𝘯𝘪𝘣𝘭𝘦𝘴 : \n➨ 𝙓𝙭 𝙡𝙤𝙧𝙖";
+
+        if (!prompt.trim()) {
+            return message.reply(guideMessage);
+        }
+
+        if (prompt.toLowerCase().trim() === "guide") {
+            return message.reply(guideMessage);
+        }
+
+        if (prompt.toLowerCase().trim() === "ratio") {
+            const usim = "◉ 𝐃𝐈𝐌𝐄𝐍𝐒𝐈𝐎𝐍𝐒 𝐗𝐗◉ \n\n✧ 𝟑:𝟐 \n✧ 𝟐:𝟑\n✧ 𝟕:𝟒 \n✧ 𝟒:𝟕\n✧ 𝟏:𝟏\n✧ 𝟕:𝟗 \n✧ 𝟗:𝟕\n✧ 𝟏𝟗:𝟏𝟑\n✧ 𝟏𝟑:𝟏𝟗\n✧ 𝟏𝟐:𝟓\n✧ 𝟓:𝟏𝟐";
+            return message.reply(usim);
+        }
+
+        if (prompt.toLowerCase().trim() === "model") {
+            const modelGuide = "◉ 𝐌𝐎𝐃𝐄𝐋𝐄𝐒 𝐗𝐗 ◉ \n\n✧ 𝐒𝐃𝐗𝐋 ✧ \n𝟏: 𝐴𝑛𝑖𝑚𝑎𝑔𝑖𝑛𝑒 𝑋𝐿 - 3.1\n𝟐: 𝐴𝑛𝑖𝑚𝑎𝑔𝑖𝑛𝑒 𝑋𝐿 - 𝑉3\n𝟑: 4𝑡ℎ 𝑇𝑎𝑖𝑙 𝐴𝑛𝑖𝑚𝑒 𝐻𝑒𝑛𝑡𝑎𝑖\n𝟒: 𝑆𝑡𝑎𝑏𝑙𝑒 𝑑𝑖𝑓𝑓𝑢𝑠𝑖𝑜𝑛 𝑋𝐿 - 1.0";
+            return message.reply(modelGuide);
+        }
+
+        if (prompt.toLowerCase().trim() === "lora") {
+            const loraGuide = "◉ 𝐋𝐨𝐫𝐚𝐬 𝐝𝐢𝐬𝐩𝐨𝐧𝐢𝐛𝐥𝐞𝐬 ✧\n\n𝟏: 𝑳𝒐𝒓𝒂 𝑬𝒅𝒈𝒆𝒅 𝑨𝒏𝒊𝒎𝒆\n𝟐: 𝑳𝒐𝒓𝒂 𝑶𝒓𝒄 𝑯𝒆𝒏𝒕𝒂𝒊\n𝟑: 𝑳𝒐𝒓𝒂 𝑨𝒏𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒇𝒐𝒓𝒎";
+            return message.reply(loraGuide);
+        }
+
+        // Send generation message
+        const lang = getLang();
+        const generationInProgress = langData[lang]["generationInProgress"];
+        const reply = await message.reply(generationInProgress);
+
+        const cachePath = join(__dirname, 'cache', `${Date.now()}.jpg`);
         const imageUrl = await generateImage({ prompt, ratio, modelIndex, steps, cfg_scale, seed, loraWeights });
 
-        // Shorten URL with TinyURL
-        const shortUrl = await tinyurl.shorten(imageUrl);
-
-        // Download image
-        const cachePath = join(global.cachePath, `generated_image_${message.senderID}.png`);
+        // Download the image
         await downloadImage(imageUrl, cachePath);
 
-        // Check file size and send the image
-        const fileStat = statSync(cachePath);
-        if (fileStat.size > _48MB) {
-            message.reply(getLang('fileTooLarge'));
-        } else {
-            await message.reply({
-                body: `${getLang('imageReady')}${shortUrl}`,
-                attachment: global.reader(cachePath)
-            });
+        const stats = statSync(cachePath);
+        if (stats.size > _48MB) {
+            return reply.reply(langData[lang]["fileTooLarge"]);
         }
-    } catch (error) {
-        console.error(error);
-        message.reply(getLang('error'));
+
+        const url = await tinyurl.shorten(imageUrl);
+        return reply.reply(`${langData[lang]["imageReady"]} ${url}`);
+    } catch (err) {
+        console.error(err);
+        return message.reply(langData["en_US"]["error"]);
     }
 }
 
 export default {
     config,
-    langData,
     onCall
 };
