@@ -24,7 +24,7 @@ const langData = {
 };
 
 async function generateImage({ imageUrl, prompt, modelIndex = 62, width = 1024, height = 1024 }) {
-    const apiUrl = `https://zetart-fiiy.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
+    const apiUrl = `https://zetart-igub.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
 
     const response = await axios.get(apiUrl);
     return response.data.imageUrl;
