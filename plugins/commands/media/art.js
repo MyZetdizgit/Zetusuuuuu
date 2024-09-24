@@ -24,7 +24,7 @@ const langData = {
 };
 
 async function generateImage({ imageUrl, prompt, modelIndex = 62, width = 1024, height = 1024 }) {
-    const apiUrl = `https://zetart-igub.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
+    const apiUrl = `https://zetart-fiiy.onrender.com/generate?imageUrl=${encodeURIComponent(imageUrl)}&prompt=${encodeURIComponent(prompt)}&modelIndex=${modelIndex}&width=${width}&height=${height}`;
 
     const response = await axios.get(apiUrl);
     return response.data.imageUrl;
@@ -94,14 +94,17 @@ async function onCall({ message, args, getLang }) {
             return message.reply("❌ | You must reply to an image.\n\nType [Art guide] for more details.");
         }
 
+        // Shorten URL with TinyURL before sending to the API
+        const shortImageUrl = await tinyurl.shorten(imageUrl);
+
         // Inform the user about image generation
         message.reply(getLang('generationInProgress'));
 
         // Generate image
-        const generatedImageUrl = await generateImage({ imageUrl, prompt, modelIndex, width, height });
+        const generatedImageUrl = await generateImage({ imageUrl: shortImageUrl, prompt, modelIndex, width, height });
 
-        // Shorten URL with TinyURL
-        const shortUrl = await tinyurl.shorten(generatedImageUrl);
+        // Shorten the generated image URL with TinyURL
+        const shortGeneratedUrl = await tinyurl.shorten(generatedImageUrl);
 
         // Download image
         const cachePath = join(global.cachePath, `generated_image_${message.senderID}.png`);
@@ -113,7 +116,7 @@ async function onCall({ message, args, getLang }) {
             message.reply(getLang('fileTooLarge'));
         } else {
             await message.reply({
-                body: `${getLang('imageReady')}${shortUrl}`,
+                body: `${getLang('imageReady')}${shortGeneratedUrl}`,
                 attachment: global.reader(cachePath)
             });
         }
