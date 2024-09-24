@@ -111,32 +111,37 @@ async function onCall({ message, args, getLang }) {
             const loraGuide = "◉ 𝐋𝐨𝐫𝐚𝐬 𝐝𝐢𝐬𝐩𝐨𝐧𝐢𝐛𝐥𝐞𝐬 ✧\n\n𝟏: 𝑳𝒐𝒓𝒂 𝑬𝒅𝒈𝒆𝒅 𝑨𝒏𝒊𝒎𝒆\n𝟐: 𝑳𝒐𝒓𝒂 𝑶𝒓𝒄 𝑯𝒆𝒏𝒕𝒂𝒊\n𝟑: 𝑳𝒐𝒓𝒂 𝑨𝒏𝒊𝒎𝒆 𝑻𝒓𝒂𝒏𝒔𝒇𝒐𝒓𝒎";
             return message.reply(loraGuide);
         }
+        // Inform the user about image generation
+        message.reply(getLang('generationInProgress'));
 
-        // Send generation message
-        const lang = getLang();
-        const generationInProgress = langData[lang]["generationInProgress"];
-        const reply = await message.reply(generationInProgress);
-
-        const cachePath = join(__dirname, 'cache', `${Date.now()}.jpg`);
+        // Generate image
         const imageUrl = await generateImage({ prompt, ratio, modelIndex, steps, cfg_scale, seed, loraWeights });
 
-        // Download the image
+        // Shorten URL with TinyURL
+        const shortUrl = await tinyurl.shorten(imageUrl);
+
+        // Download image
+        const cachePath = join(global.cachePath, `generated_image_${message.senderID}.png`);
         await downloadImage(imageUrl, cachePath);
 
-        const stats = statSync(cachePath);
-        if (stats.size > _48MB) {
-            return reply.reply(langData[lang]["fileTooLarge"]);
+        // Check file size and send the image
+        const fileStat = statSync(cachePath);
+        if (fileStat.size > _48MB) {
+            message.reply(getLang('fileTooLarge'));
+        } else {
+            await message.reply({
+                body: `${getLang('imageReady')}${shortUrl}`,
+                attachment: global.reader(cachePath)
+            });
         }
-
-        const url = await tinyurl.shorten(imageUrl);
-        return reply.reply(`${langData[lang]["imageReady"]} ${url}`);
-    } catch (err) {
-        console.error(err);
-        return message.reply(langData["en_US"]["error"]);
+    } catch (error) {
+        console.error(error);
+        message.reply(getLang('error'));
     }
 }
 
 export default {
     config,
+    langData,
     onCall
 };
