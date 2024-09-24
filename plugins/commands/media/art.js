@@ -50,7 +50,7 @@ async function downloadImage(imageStream, cachePath) {
 
 async function onCall({ message, args, getLang }) {
     let imageUrl = '';
-    let prompt = 'perfectly detailled';
+    let prompt = 'same details';
     let modelIndex = 2;
     let width = 1024;
     let height = 1024;
