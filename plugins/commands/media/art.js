@@ -17,9 +17,9 @@ const config = {
 const langData = {
     "en_US": {
         "error": "An error occurred. Please try again later.",
-        "generationInProgress": "🖌️ Please wait while your image is being generated...",
+        "generationInProgress": "🖌️ Pls wait...",
         "fileTooLarge": "File is too large, max size is 48MB",
-        "imageReady": "Here is your image 🌟\n 4K Link ✨: \n"
+        "imageReady": "Here is your image 🌟"
     }
 };
 
@@ -50,8 +50,8 @@ async function downloadImage(imageStream, cachePath) {
 
 async function onCall({ message, args, getLang }) {
     let imageUrl = '';
-    let prompt = '';
-    let modelIndex = 62;
+    let prompt = 'perfectly detailled';
+    let modelIndex = 2;
     let width = 1024;
     let height = 1024;
 
@@ -72,7 +72,7 @@ async function onCall({ message, args, getLang }) {
         }
 
         if (prompt.toLowerCase() === "model") {
-            const modelList = "◉ 𝐌𝐎𝐃𝐄𝐋𝐒 𝐀𝐑𝐓 𝐃𝐈𝐒𝐏𝐎𝐍𝐈𝐁𝐋𝐄𝐒 ◉\n\n0 | 3Guofeng3\n1 | Absolutereality_V16\n..."; // Include the full list
+            const modelList = "◉ 𝐌𝐎𝐃𝐄𝐋𝐒 𝐀𝐑𝐓 𝐃𝐈𝐒𝐏𝐎𝐍𝐈𝐁𝐋𝐄𝐒 ◉\n\n0 | 3Guofeng3\n1 | Absolutereality_V16\n2 | Absolutereality_v181\n3 | AmIReal_V41\n4 | Analog-diffusion-1.0\n5 | Anythingv3_0-pruned\n6 | Anything-v4.5-pruned\n7 | AnythingV5_PrtRE\n8 | AOM3A3_orangemixs\n9 | Blazing_drive_v10g\n10 | Breakdomain_I2428\n11 | Breakdomain_M2150\n12 | CetusMix_Version35\n13 | ChildrensStories_v13D\n14 | ChildrensStories_v1SemiReal\n15 | ChildrensStories_v1ToonAnime\n16 | Counterfeit_v30\n17 | Cuteyukimixadorable\n18 | Cyberrealistic_v33\n19 | Dalcefo_v4\n20 | Deliberate_v2\n21 | Deliberate_v3\n22 | Dreamlike-anime-1.0\n23 | Dreamlike-diffusion-1.0\n24 | Dreamlike-photoreal-2.0\n25 | Dreamshaper_6BakedVae\n26 | Dreamshaper_7\n27 | Dreamshaper_8\n28 | Edgeofrealism_eorV20\n29 | Eimisanimediffusion_v1\n30 | Elldreths-vivid-mix\n31 | Epicphotogasm_xplusplus\n32 | Epicrealism_naturalsinrc1vae\n33 | Epicrealism_pureevolutionv3\n34 | Icantbelieveit\n35 | Indigofurrymix_v75hybrid\n36 | Juggernaut_aftermath\n37 | Lofi_v4\n38 | Lyriel_v16\n39 | Majicmixrealistic_v4\n40 | Mechamix_v10\n41 | Meinamix_meinav9\n42 | Meinamix_meinav11\n43 | Neverendingdream_v122\n44 | Openjourney_v4\n45 | Pastelmixstylize\n46 | Portraitplus_v1.0\n47 | Protogenx34\n48 | Realistic_vision_v1.4\n49 | Realistic_vision_v2.0\n50 | Realistic_vision_v4.0\n51 | Realistic_vision_v5.0\n52 | Redshift_diffusion-v10\n53 | Revanimated_v122\n54 | Rundiffusionfx25d_v10\n55 | Rundiffusionfx_v10\n56 | Sdv1_4\n57 | V1-5-pruned-emaonly\n58 | V1-5-inpainting\n59 | Shoninsbeautiful_v10\n60 | Theallys-mix-ii-churned\n61 | Timeless-1.0\n62 | Toonyou_beta6\n63 | Realistic_Vision_V5.1\n64 | Aniverse_v30"; // Include the full list
             return message.reply(modelList);
         }
 
