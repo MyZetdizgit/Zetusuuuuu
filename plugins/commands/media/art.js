@@ -54,10 +54,10 @@ async function onCall({ message, args, getLang, api, event }) {
         if (prompt.toLowerCase() === "guide") return message.reply(getLang('guide'));
         if (prompt.toLowerCase() === "model") return message.reply(getLang('modelsList'));
 
-        if (event.type === "message_reply" && event.messageReply.attachments?.[0]?.type === "photo") {
-            imageUrl = event.messageReply.attachments[0].url;
-            width = event.messageReply.attachments[0].width;
-            height = event.messageReply.attachments[0].height;
+        if (event.type === "message_reply" && message.messageReply.attachments?.[0]?.type === "photo") {
+            imageUrl = message.messageReply.attachments[0].url;
+            width = message.messageReply.attachments[0].width;
+            height = message.messageReply.attachments[0].height;
 
             if (width > 1024 || height > 1024) {
                 const aspectRatio = width / height;
